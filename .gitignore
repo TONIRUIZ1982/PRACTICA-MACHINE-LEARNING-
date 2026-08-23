@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 data/raw/*.csv
+artifacts/
 .jupyter_runtime/
 .jupyter_config/
 .jupyter_data/

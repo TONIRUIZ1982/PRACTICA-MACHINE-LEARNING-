@@ -16,18 +16,33 @@ from .data import (
     split_by_arrival_date,
     validate_dataset,
 )
+from .features import add_engineered_features, prepare_model_frame
+from .modeling import (
+    PRIMARY_METRIC,
+    build_logistic_pipeline,
+    evaluate_classifier,
+    save_evaluation_artifacts,
+    save_model,
+)
 
 __all__ = [
     "DatasetValidationError",
     "EXPECTED_COLUMNS",
     "LEAKAGE_FEATURES",
+    "PRIMARY_METRIC",
     "TARGET_COLUMN",
     "TIME_DEPENDENT_FEATURES",
     "TemporalSplit",
+    "add_engineered_features",
     "build_arrival_date",
+    "build_logistic_pipeline",
+    "evaluate_classifier",
     "get_candidate_features",
     "load_dataset",
+    "prepare_model_frame",
     "remove_exact_duplicates",
+    "save_evaluation_artifacts",
+    "save_model",
     "split_by_arrival_date",
     "validate_dataset",
 ]
