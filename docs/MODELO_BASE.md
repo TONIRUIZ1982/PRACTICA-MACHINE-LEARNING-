@@ -14,7 +14,12 @@ Disponer de una primera referencia reproducible antes de probar modelos más com
 - Los valores ausentes numéricos se sustituyen por cero y los categóricos por `Unknown`.
 - Las categorías se codifican con one-hot y los valores desconocidos en validación no producen errores.
 - Las variables numéricas se estandarizan.
-- Se añaden noches totales, huéspedes totales, indicadores familiares/históricos y representación cíclica de mes y semana.
+- `agent` se excluye: tiene muchas categorías, bastantes ausentes y no mejoró la validación temporal.
+- El día del mes se excluye porque no aportó mejora incremental.
+- Se evita duplicar noches, huéspedes e historial mediante totales o indicadores que repiten la información original.
+- Se añade `has_children` y se representa la semana de llegada de forma cíclica para conservar la estacionalidad.
+
+La selección definitiva reduce la entrada de 30 a 23 variables. En la comparación local mejoró ligeramente tanto F1 como ROC-AUC respecto al baseline inicial. El detalle está en `docs/SELECCION_VARIABLES.md`.
 
 La imputación, codificación y estandarización se ajustan exclusivamente con el conjunto de entrenamiento para evitar contaminación de validación.
 

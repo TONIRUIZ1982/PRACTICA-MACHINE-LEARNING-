@@ -31,16 +31,18 @@ def booking_row(**overrides) -> dict:
 
 
 class FeatureEngineeringTests(unittest.TestCase):
-    def test_interpretable_totals_are_created(self):
+    def test_selected_engineered_features_are_created(self):
         dataframe = pd.DataFrame(
-            [booking_row(stays_in_weekend_nights=2, stays_in_week_nights=3, adults=2, children=1)]
+            [booking_row(children=1, babies=0)]
         )
         prepared = add_engineered_features(dataframe)
-        self.assertEqual(prepared.loc[0, "total_nights"], 5)
-        self.assertEqual(prepared.loc[0, "total_guests"], 3)
         self.assertEqual(prepared.loc[0, "has_children"], 1)
+        self.assertIn("arrival_week_sin", prepared)
+        self.assertIn("arrival_week_cos", prepared)
+        self.assertNotIn("total_nights", prepared)
+        self.assertNotIn("total_guests", prepared)
 
-    def test_model_frame_excludes_leakage_and_operational_columns(self):
+    def test_model_frame_excludes_leakage_and_rejected_features(self):
         dataframe = pd.DataFrame([booking_row()])
         predictors, target = prepare_model_frame(dataframe)
         for excluded in (
@@ -52,8 +54,13 @@ class FeatureEngineeringTests(unittest.TestCase):
             "days_in_waiting_list",
             "company",
             "arrival_date_year",
+            "arrival_date_month",
+            "arrival_date_week_number",
+            "arrival_date_day_of_month",
+            "agent",
         ):
             self.assertNotIn(excluded, predictors.columns)
+        self.assertEqual(predictors.shape[1], 23)
         self.assertEqual(target.name, "is_canceled")
 
 
