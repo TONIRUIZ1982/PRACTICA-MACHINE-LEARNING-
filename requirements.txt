@@ -2,5 +2,7 @@ pandas==3.0.5
 matplotlib==3.11.1
 seaborn==0.13.2
 scikit-learn==1.9.0
+xgboost==3.4.1
+tensorflow==2.21.0
 jupyterlab==4.6.3
 ipykernel==7.3.0

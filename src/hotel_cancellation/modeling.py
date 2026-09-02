@@ -6,6 +6,10 @@ import json
 from pathlib import Path
 
 import joblib
+import matplotlib
+
+# Scripts run headlessly; a GUI backend can crash when estimators use workers.
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -27,8 +31,16 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 PRIMARY_METRIC = "f1"
 
 
-def build_logistic_pipeline(predictors: pd.DataFrame) -> Pipeline:
-    """Create an end-to-end pipeline fitted only with training information."""
+def build_preprocessor(
+    predictors: pd.DataFrame,
+    *,
+    dense_output: bool = False,
+) -> ColumnTransformer:
+    """Create preprocessing from training dtypes only.
+
+    Dense output is reserved for Keras. Scikit-learn and XGBoost keep the
+    memory-efficient sparse one-hot representation.
+    """
     numeric_columns = predictors.select_dtypes(include=["number", "bool"]).columns.tolist()
     categorical_columns = [
         column for column in predictors.columns if column not in numeric_columns
@@ -43,19 +55,30 @@ def build_logistic_pipeline(predictors: pd.DataFrame) -> Pipeline:
     categorical_pipeline = Pipeline(
         steps=[
             ("imputer", SimpleImputer(strategy="constant", fill_value="Unknown")),
-            ("one_hot", OneHotEncoder(handle_unknown="ignore")),
+            (
+                "one_hot",
+                OneHotEncoder(
+                    handle_unknown="ignore",
+                    sparse_output=not dense_output,
+                ),
+            ),
         ]
     )
-    preprocessing = ColumnTransformer(
+    return ColumnTransformer(
         transformers=[
             ("numeric", numeric_pipeline, numeric_columns),
             ("categorical", categorical_pipeline, categorical_columns),
         ],
         verbose_feature_names_out=False,
+        sparse_threshold=0.0 if dense_output else 0.3,
     )
+
+
+def build_logistic_pipeline(predictors: pd.DataFrame) -> Pipeline:
+    """Create an end-to-end logistic baseline."""
     return Pipeline(
         steps=[
-            ("preprocessing", preprocessing),
+            ("preprocessing", build_preprocessor(predictors)),
             (
                 "classifier",
                 LogisticRegression(max_iter=1_000, random_state=42),
@@ -65,13 +88,13 @@ def build_logistic_pipeline(predictors: pd.DataFrame) -> Pipeline:
 
 
 def evaluate_classifier(
-    model: Pipeline,
+    model,
     predictors: pd.DataFrame,
     target: pd.Series,
     *,
     threshold: float = 0.5,
 ) -> dict[str, float | int]:
-    """Calculate the same classification metrics for every future model."""
+    """Calculate the same classification metrics for every model."""
     probabilities = model.predict_proba(predictors)[:, 1]
     predictions = (probabilities >= threshold).astype(int)
     return {
@@ -87,7 +110,7 @@ def evaluate_classifier(
 
 
 def save_evaluation_artifacts(
-    model: Pipeline,
+    model,
     predictors: pd.DataFrame,
     target: pd.Series,
     metrics: dict[str, float | int],
@@ -105,21 +128,26 @@ def save_evaluation_artifacts(
     with (output_path / f"{prefix}_metrics.json").open("w", encoding="utf-8") as file:
         json.dump(metrics, file, indent=2, ensure_ascii=False)
 
-    ConfusionMatrixDisplay.from_predictions(target, predictions, colorbar=False)
-    plt.title(f"Matriz de confusión — {prefix}")
+    ConfusionMatrixDisplay.from_predictions(
+        target,
+        predictions,
+        display_labels=["No cancelada", "Cancelada"],
+        colorbar=False,
+    )
+    plt.title(f"Matriz de confusión - {prefix}")
     plt.tight_layout()
     plt.savefig(output_path / f"{prefix}_confusion_matrix.png", dpi=150)
     plt.close()
 
     RocCurveDisplay.from_predictions(target, probabilities)
-    plt.title(f"Curva ROC — {prefix}")
+    plt.title(f"Curva ROC - {prefix}")
     plt.tight_layout()
     plt.savefig(output_path / f"{prefix}_roc_curve.png", dpi=150)
     plt.close()
 
 
 def save_model(model: Pipeline, output_directory: str | Path) -> Path:
-    """Persist the fitted end-to-end pipeline for local reproducibility."""
+    """Persist the fitted logistic pipeline for local reproducibility."""
     output_path = Path(output_directory)
     output_path.mkdir(parents=True, exist_ok=True)
     model_path = output_path / "logistic_baseline.joblib"
