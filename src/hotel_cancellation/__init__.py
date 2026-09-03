@@ -16,7 +16,19 @@ from .data import (
     split_by_arrival_date,
     validate_dataset,
 )
-from .features import add_engineered_features, prepare_model_frame
+from .features import (
+    INFERENCE_INPUT_COLUMNS,
+    MODEL_PREDICTOR_COLUMNS,
+    add_engineered_features,
+    prepare_inference_frame,
+    prepare_model_frame,
+)
+from .inference import (
+    FINAL_MODEL_NAME,
+    FINAL_THRESHOLD,
+    load_final_model,
+    predict_cancellations,
+)
 from .modeling import (
     PRIMARY_METRIC,
     build_logistic_pipeline,
@@ -28,7 +40,11 @@ from .modeling import (
 __all__ = [
     "DatasetValidationError",
     "EXPECTED_COLUMNS",
+    "FINAL_MODEL_NAME",
+    "FINAL_THRESHOLD",
+    "INFERENCE_INPUT_COLUMNS",
     "LEAKAGE_FEATURES",
+    "MODEL_PREDICTOR_COLUMNS",
     "PRIMARY_METRIC",
     "TARGET_COLUMN",
     "TIME_DEPENDENT_FEATURES",
@@ -39,6 +55,9 @@ __all__ = [
     "evaluate_classifier",
     "get_candidate_features",
     "load_dataset",
+    "load_final_model",
+    "predict_cancellations",
+    "prepare_inference_frame",
     "prepare_model_frame",
     "remove_exact_duplicates",
     "save_evaluation_artifacts",
