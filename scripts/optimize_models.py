@@ -65,6 +65,12 @@ def print_metrics(name: str, metrics: dict[str, float | int]) -> None:
 
 def main() -> None:
     arguments = parse_arguments()
+    final_result_path = arguments.output_dir / "final_test_result.json"
+    if arguments.evaluate_test and final_result_path.exists():
+        raise RuntimeError(
+            "El test final ya fue evaluado en esta carpeta. "
+            "No debe reutilizarse para nuevos ajustes."
+        )
     dataframe = load_dataset(arguments.data)
     if arguments.deduplicate:
         dataframe, removed = remove_exact_duplicates(dataframe)
