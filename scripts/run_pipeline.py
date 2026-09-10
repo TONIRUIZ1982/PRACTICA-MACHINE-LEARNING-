@@ -14,6 +14,7 @@ COMMAND_MODULES = {
     "compare": "scripts.train_all_models",
     "optimize": "scripts.optimize_models",
     "predict": "scripts.predict_cancellations",
+    "check": "scripts.check_delivery",
 }
 
 
