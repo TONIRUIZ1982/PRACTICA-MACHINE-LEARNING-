@@ -1,5 +1,8 @@
 # Informe final - Predicción de cancelaciones hoteleras
 
+**Integrantes:** Antonio José Ruiz Expósito, Jeronimo Javier y Vanessa Romero
+**Repositorio:** https://github.com/TONIRUIZ1982/PRACTICA-MACHINE-LEARNING-
+
 ## 1. Problema y objetivo
 
 El objetivo es estimar, justo después de confirmar una reserva, la probabilidad de que sea cancelada. Esta predicción permite anticipar la ocupación y planificar acciones preventivas.
@@ -72,4 +75,4 @@ El script `scripts/predict_cancellations.py` aplica el pipeline XGBoost a un CSV
 
 El equipo ha trabajado con responsabilidad compartida, revisando conjuntamente las decisiones sobre variables, datos, modelos y documentación. El historial de commits permite identificar las aportaciones técnicas realizadas durante el proyecto.
 
-> Pendiente antes de entrega: completar en equipo nombres, URL final del repositorio y el apartado de contribuciones acordado para la evaluación.
+Antes de la entrega, cada integrante deberá revisar el informe y consensuar la redacción final de las contribuciones compartidas.

@@ -39,6 +39,6 @@ ordinaria, ya que pueden tardar y la evaluacion final sobre 2017 ya esta cerrada
 
 - Validar el modelo elegido frente a las propuestas de los otros integrantes.
 - Elegir las figuras de resultados locales que iran al informe.
-- Completar autores, repositorio final y aportaciones compartidas.
+- Confirmar la redacción final de las aportaciones compartidas en el informe.
 - Revisar los notebooks que finalmente se integren antes de hacer merge en
   `main`.

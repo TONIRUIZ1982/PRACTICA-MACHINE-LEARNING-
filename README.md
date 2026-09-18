@@ -6,7 +6,7 @@ Proyecto final de Machine Learning para estimar la probabilidad de cancelación 
 
 - Antonio José Ruiz Expósito
 - Vanessa Romero
-- Jero (GitHub: `veneloforte`)
+- Jeronimo Javier (GitHub: `veneloforte`)
 
 El trabajo se ha desarrollado con responsabilidad compartida. Las decisiones sobre datos, variables, modelos, validación y documentación se han revisado conjuntamente.
 
