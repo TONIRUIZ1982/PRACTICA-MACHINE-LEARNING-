@@ -8,3 +8,5 @@ data/raw/*.csv
 .jupyter_runtime/
 .jupyter_config/
 .jupyter_data/
+
+data/*.csv
