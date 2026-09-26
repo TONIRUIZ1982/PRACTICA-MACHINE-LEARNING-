@@ -1,35 +1,12 @@
-# Práctica final - Predicción de cancelaciones hoteleras
+# Predicción de cancelaciones hotelerasProyecto final de Machine Learning para estimar la probabilidad de cancelación de una reserva justo después de confirmarla.## Equipo- Antonio José Ruiz Expósito- Vanessa Romero- Jeronimo Javier (GitHub: `veneloforte`)El trabajo se ha desarrollado con responsabilidad compartida. Las decisiones sobre datos, variables, modelos, validación y documentación se han revisado conjuntamente.## Datos y objetivoEl dataset contiene 119.390 registros y 32 variables. La variable objetivo es `is_canceled`: `1` representa una cancelación y `0` una reserva no cancelada. El CSV original se mantiene solo en local en `data/raw/dataset_practica_final.csv` y no se publica en GitHub.El escenario principal elimina 31.994 duplicados exactos. Se excluyen las fugas directas `reservation_status` y `reservation_status_date`, además de variables que pueden cambiar después de confirmar la reserva.## MetodologíaLa división temporal utiliza entrenamiento hasta septiembre de 2016, validación entre octubre y diciembre de 2016, y un test final reservado para 2017.Se comparan regresión logística, árbol de decisión, Random Forest, XGBoost y una red neuronal multicapa con Keras/TensorFlow. F1 es la métrica principal porque equilibra la detección de cancelaciones y las falsas alarmas.## Resultado finalXGBoost obtuvo el mayor F1 de validación (`0,6218`) con un umbral de `0,3619`. En la evaluación final de 2017 obtuvo accuracy de `0,6866`, precision de `0,5055`, recall de `0,8289`, F1 de `0,6280` y ROC-AUC de `0,8098`.El test de 2017 queda cerrado y no se reutiliza para seleccionar variables, hiperparámetros ni umbrales.## InstalaciónSe recomienda Python 3.11 o superior. Crear un entorno virtual, activarlo e instalar las dependencias con `python -m pip install -r requirements.txt`.Copiar el CSV proporcionado por la asignatura en `data/raw/dataset_practica_final.csv` antes de ejecutar el proyecto.## EjecuciónLos comandos principales se ejecutan desde la raíz del repositorio:- `python -m scripts.run_pipeline validate -- --deduplicate`- `python -m scripts.run_pipeline eda -- --deduplicate`- `python -m scripts.run_pipeline compare`- `python -m scripts.run_pipeline optimize`- `python -m scripts.run_pipeline check -- --require-data --require-model`- `python -m scripts.run_pipeline predict -- --input ruta/reservas_nuevas.csv --output ruta/predicciones.csv`La optimización bloquea la reutilización accidental del test de 2017.## Estructura- `src/hotel_cancellation/`: código reutilizable de datos, variables y modelos.- `scripts/`: validación, entrenamiento e inferencia.- `notebooks/`: EDA y notebook final de apoyo.- `docs/`: decisiones, resultados, informe y guía de defensa.- `presentations/`: presentación de apoyo para la defensa.- `tests/`: pruebas automatizadas.## Documentación- `docs/VARIABLES.md`: variables y fugas de información.- `docs/DECISIONES_DATOS.md`: duplicados, ausentes y partición temporal.- `docs/RESULTADO_FINAL.md`: selección y métricas finales.- `docs/CIERRE_TECNICO.md`: verificación antes de la entrega.- `docs/INFORME_FINAL_BORRADOR.md`: base del PDF para PontIA.Los datos originales, modelos entrenados y resultados generados se mantienen en directorios ignorados por Git.
+## Revisión de aportaciones
 
-Repositorio de la práctica final de Machine Learning. El proyecto estima la probabilidad de cancelación de una reserva hotelera inmediatamente después de su confirmación.
+El repositorio completo, los resultados, las instrucciones de ejecución y la documentación final están disponibles en `main`.
 
-## Guía de revisión
+Para consultar las aportaciones de cada integrante de forma independiente:
 
-La revisión se ha organizado por ramas para conservar las aportaciones de cada integrante y facilitar la trazabilidad del trabajo.
+- Antonio José Ruiz Expósito: rama `cierrentrega/toni`.
+- Vanessa Romero: rama `revision/vanessa`.
+- Jeronimo Javier: rama `revision/jeronimo`.
 
-| Integrante / finalidad | Rama | Contenido principal |
-| --- | --- | --- |
-| Antonio José Ruiz Expósito - cierre técnico | [`cierrentrega/toni`](../../tree/cierrentrega/toni) | Pipeline final, selección de variables, comparación y optimización de modelos, inferencia, pruebas, documentación, notebook final y presentación. |
-| Vanessa Romero | [`revision/vanessa`](../../tree/revision/vanessa) | Análisis exploratorio y materiales de preparación asociados a su aportación. |
-| Jeronimo Javier | [`revision/jeronimo`](../../tree/revision/jeronimo) | Modelos y notebooks comparativos desarrollados en su rama. |
-
-La rama recomendada para revisar la solución técnica consolidada es [`cierrentrega/toni`](../../tree/cierrentrega/toni).
-
-## Verificación reproducible
-
-En la rama de cierre:
-
-1. Crear un entorno con Python 3.11 o superior.
-2. Instalar dependencias con `python -m pip install -r requirements.txt`.
-3. Copiar el CSV de la asignatura en `data/raw/dataset_practica_final.csv`.
-4. Ejecutar `python -m pytest -q`.
-5. Ejecutar `python -m scripts.run_pipeline check -- --require-data --require-model`.
-
-El CSV original, los modelos entrenados, los resultados generados y el PDF de entrega permanecen fuera de Git por privacidad, tamaño y reproducibilidad.
-
-## Entregables
-
-- Notebook de análisis exploratorio.
-- Notebook del modelo final.
-- Presentación de defensa.
-- Documentación de variables, decisiones de datos, resultados y cierre técnico.
-- Memoria técnica en PDF para la entrega por PontIA.
+La guía ampliada para revisión docente está en `docs/GUIA_REVISION_PROFESOR.md`.
