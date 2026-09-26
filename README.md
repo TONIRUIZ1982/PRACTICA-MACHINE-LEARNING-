@@ -9,8 +9,8 @@ La revisión se ha organizado por ramas para conservar las aportaciones de cada 
 | Integrante / finalidad | Rama | Contenido principal |
 | --- | --- | --- |
 | Antonio José Ruiz Expósito - cierre técnico | [`cierrentrega/toni`](../../tree/cierrentrega/toni) | Pipeline final, selección de variables, comparación y optimización de modelos, inferencia, pruebas, documentación, notebook final y presentación. |
-| Vanessa Romero | [`feature/vane`](../../tree/feature/vane) | Análisis exploratorio y materiales de preparación asociados a su aportación. |
-| Jeronimo Javier | [`feature-/jero`](../../tree/feature-/jero) | Modelos y notebooks comparativos desarrollados en su rama. |
+| Vanessa Romero | [`revision/vanessa`](../../tree/revision/vanessa) | Análisis exploratorio y materiales de preparación asociados a su aportación. |
+| Jeronimo Javier | [`revision/jeronimo`](../../tree/revision/jeronimo) | Modelos y notebooks comparativos desarrollados en su rama. |
 
 La rama recomendada para revisar la solución técnica consolidada es [`cierrentrega/toni`](../../tree/cierrentrega/toni).
 

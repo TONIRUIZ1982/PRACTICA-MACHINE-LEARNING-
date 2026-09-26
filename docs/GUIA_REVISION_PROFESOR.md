@@ -9,8 +9,8 @@ La rama `main` actúa como índice de revisión. La implementación final está 
 | Rama | Aportación |
 | --- | --- |
 | `cierrentrega/toni` | Cierre técnico: pipeline, modelos, evaluación temporal, inferencia, tests, documentación, notebook final y presentación. |
-| `feature/vane` | Análisis exploratorio y preparación desarrollados por Vanessa Romero. |
-| `feature-/jero` | Modelos y notebooks comparativos desarrollados por Jeronimo Javier. |
+| `revision/vanessa` | Análisis exploratorio y preparación desarrollados por Vanessa Romero. |
+| `revision/jeronimo` | Modelos y notebooks comparativos desarrollados por Jeronimo Javier. |
 
 ## Criterios de entrega comprobados
 
