@@ -37,3 +37,23 @@ models/test/artifacts/base_regresion_logistica.pkl
 models/test/artifacts/base_red_neuronal_mlp.pkl
 models/test/artifacts/base_random_forest.pkl
 models/test/artifacts/base_arbol_decision.pkl
+
+models/test/artifacts/
+*.pkl
+
+# Entorno, datos y artefactos locales de la práctica
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.jupyter_runtime/
+.jupyter_config/
+.jupyter_data/
+data/*.csv
+data/**/*.csv
+artifacts/
+entrega/
+models/test/artifacts/
+*.pkl
+*.joblib
