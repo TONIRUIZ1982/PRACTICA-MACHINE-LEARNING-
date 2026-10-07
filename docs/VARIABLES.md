@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Este documento define las variables de `dataset_practica_final.csv` antes de iniciar el análisis en Jupyter. La finalidad es compartir una interpretación común de los datos, justificar qué columnas pueden utilizarse y prevenir fugas de información.
+Este documento define las variables de `raw.csv` antes de iniciar el análisis en Jupyter. La finalidad es compartir una interpretación común de los datos, justificar qué columnas pueden utilizarse y prevenir fugas de información.
 
 La variable objetivo es `is_canceled`:
 

@@ -55,7 +55,7 @@ Con el CSV facilitado, el segundo comando debería informar de 119.390 filas car
 & ".\.venv\Scripts\python.exe" -m unittest discover -s tests -v
 ```
 
-Si el CSV no está en `data/raw/dataset_practica_final.csv`, las pruebas de integración se omiten, pero las pruebas unitarias siguen funcionando.
+Si el CSV no está en `data/raw.csv`, las pruebas de integración se omiten, pero las pruebas unitarias siguen funcionando.
 
 ## Decisiones protegidas por el código
 

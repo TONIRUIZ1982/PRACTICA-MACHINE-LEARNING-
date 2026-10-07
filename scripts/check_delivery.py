@@ -24,7 +24,7 @@ REQUIRED_FILES = (
     "docs/GUIA_DEFENSA.md",
     "docs/ENTREGA_PENDIENTE.md",
 )
-PRIVATE_PREFIXES = ("data/raw/", "artifacts/", "models/")
+PRIVATE_PREFIXES = ("data/raw.csv", "artifacts/", "models/")
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -32,7 +32,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--data",
         type=Path,
-        default=Path("data/raw/dataset_practica_final.csv"),
+        default=Path("data/raw.csv"),
         help="Local CSV to validate when it exists.",
     )
     parser.add_argument(

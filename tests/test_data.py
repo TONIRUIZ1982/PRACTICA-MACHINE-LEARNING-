@@ -18,7 +18,7 @@ from src.hotel_cancellation import (
 )
 
 
-LOCAL_DATASET = Path("data/raw/dataset_practica_final.csv")
+LOCAL_DATASET = Path("data/raw.csv")
 
 
 def booking_row(**overrides) -> dict:

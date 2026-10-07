@@ -25,7 +25,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--data",
         type=Path,
-        default=Path("data/raw/dataset_practica_final.csv"),
+        default=Path("data/raw.csv"),
         help="Ruta al CSV local (nunca se publica en Git).",
     )
     parser.add_argument(

@@ -2,7 +2,7 @@
 
 ## Antes de salir de casa
 
-1. Comprueba que el CSV está en `data/raw/dataset_practica_final.csv`.
+1. Comprueba que el CSV está en `data/raw.csv`.
 2. Abre PowerShell y ejecuta:
 
 ```powershell

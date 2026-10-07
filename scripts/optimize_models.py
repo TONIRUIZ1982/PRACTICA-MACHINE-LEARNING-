@@ -33,7 +33,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--data",
         type=Path,
-        default=Path("data/raw/dataset_practica_final.csv"),
+        default=Path("data/raw.csv"),
     )
     parser.add_argument("--deduplicate", action="store_true")
     parser.add_argument("--train-end", default="2016-09-30")
